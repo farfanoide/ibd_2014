@@ -54,9 +54,6 @@ empieza con la letra "T". Dicho listado deberá estar ordenado por Apellido.
 Dicho Listado deberá estar ordenado en forma descendente de acuerdo a la
 cantidad de préstamos resultante para cada género.
 
-
-
-
 Ejercicio 2
 -----------
 
@@ -106,7 +103,6 @@ a registrar es 2000.
 
 9. Dar de baja el curso con código 5. Realizar todas las bajas necesarias para
 no dejar el conjunto de relaciones en estado inconsistente.
-
 
 Ejercicio 3
 -----------
