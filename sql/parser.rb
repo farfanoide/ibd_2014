@@ -84,6 +84,7 @@ template_header = <<-EOS
 
 require 'rubygems'
 require 'data_mapper'
+require 'dm-mysql-adapter'
 require 'faker'
 
 DataMapper::Logger.new($stdout, :debug)
