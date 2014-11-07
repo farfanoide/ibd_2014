@@ -1,4 +1,4 @@
-INTRODUCCIoN A LAS BASES DE DATOS - SQL – EJERCITACIoN
+INTRODUCCION A LAS BASES DE DATOS - SQL – EJERCITACION
 ======================================================
 
 
@@ -8,13 +8,13 @@ Ejercicio 1
 Dadas las siguientes relaciones, resolver en SQL las consultas planteadas:
 
 ```
-SOCIO           = (Cod_Socio, DNI, Apellido, Nombre, Fecha_Nacimiento, Fecha_Ingreso)
-LIBRO           = (ISBN, Titulo, Cod_Genero, Descripcion)
-COPIA           = (ISBN, Nro_Ejemplar, Estado)
-EDITORIAL       = (Cod_Editorial, Denominacion, Telefono, Calle, Numero, Piso, Dpto.)
-LIBRO-EDITORIAL = (ISBN, Cod_Editorial, Año_Edicion)
-GENERO          = (Cod_Genero, Nombre)
-PRESTAMO        = (Nro_Prestamo, Cod_Socio, ISBN, Nro_Ejemplar, Fecha_Prestamo, Fecha_Devolucion)
+Socio          = (Cod_Socio, DNI, Apellido, Nombre, Fecha_Nacimiento, Fecha_Ingreso)
+Libro          = (ISBN, Titulo, Cod_Genero, Descripcion)
+Copia          = (ISBN, Nro_Ejemplar, Estado)
+Editorial      = (Cod_Editorial, Denominacion, Telefono, Calle, Numero, Piso, Dpto.)
+LibroEditorial = (ISBN, Cod_Editorial, Año_Edicion)
+Genero         = (Cod_Genero, Nombre)
+Prestamo       = (Nro_Prestamo, Cod_Socio, ISBN, Nro_Ejemplar, Fecha_Prestamo, Fecha_Devolucion)
 ```
 
 1. Listar el Apellido y Nombre de aquellos socios cuya fecha de ingreso este
@@ -22,7 +22,7 @@ entre el 01/9/2008 y el 30/09/2008. Dicho listado deberá estar ordenado por
 Apellido.
 
 2. Listar el Titulo, Genero (el Nombre del Genero) y Descripcion de aquellos
-libros editados por la editorial "Nueva Editorial". Dicho listado deberá estar
+libros editados por la editorial “Nueva Editorial”. Dicho listado deberá estar
 ordenado por Titulo.
 
 3. Listar el Apellido, Nombre, Fecha de Nacimiento y cantidad de prestamos de
@@ -30,11 +30,11 @@ aquellos socios que tengan más de 10 prestamos. Dicho listado deberá estar
 ordenado por Apellido.
 
 4. Listar el DNI, Apellido y Nombre de aquellos socios que tengan prestamos sin
-devolver de libros editados por la editorial "Gran Editorial". Dicho listado
+devolver de libros editados por la editorial “Gran Editorial”. Dicho listado
 deberá estar ordenado por Apel ido y Nombre.
 
 5. Proyectar que cantidad de socios tienen actualmente libros prestados cuyo
-estado sea "Bueno".
+estado sea “Bueno”.
 
 6. Listar el Titulo, Genero, Denominacion de la editorial y Año de edicion de
 aquellos libros editados entre los años 1980 y 2000. Dicho listado deberá estar
@@ -43,8 +43,8 @@ ordenado por año de edicion y titulo del libro.
 7. Agregar un nuevo socio con el DNI, Apellido, Nombre y Fecha de nacimiento
 que prefiera.
 
-8. Modificar el titulo del libro cuyo ISBN es 2222-2020 por el titulo "El
-Codigo".
+8. Modificar el titulo del libro cuyo ISBN es 2222-2020 por el titulo “El
+Codigo”.
 
 9. Listar el DNI, Apellido y Nombre de aquellos socios cuyo Apellido contenga
 la secuencia de letras "bra" o posea prestamos actuales de libros cuyo genero
@@ -60,14 +60,14 @@ Ejercicio 2
 Dadas las siguientes relaciones, resolver en SQL las consultas planteadas:
 
 ```
-PERSONA         = (DNI, Apellido, Nombre, Fecha_Nacimiento, Estado_Civil, Genero)
-ALUMNO          = (DNI, Legajo, Año_Ingreso)
-PROFESOR        = (DNI, Matricula, Nro_Expediente)
-TITULO          = (Cod_Titulo, Nombre, Descripcion)
-TITULO-PROFESOR = (Cod_Titulo, DNI, Fecha)
-CURSO           = (Cod_Curso, Nombre, Descripcion, Fecha_Creacion, Duracion)
-ALUMNO-CURSO    = (DNI, Cod_Curso, Año, Desempeño, Calificacion)
-PROFESOR-CURSO  = (DNI, Cod_Curso, Fecha_Desde, Fecha_Hasta)
+Persona        = (DNI, Apellido, Nombre, Fecha_Nacimiento, Estado_Civil, Genero)
+Alumno         = (DNI, Legajo, Año_Ingreso)
+Profesor       = (DNI, Matricula, Nro_Expediente)
+Titulo         = (Cod_Titulo, Nombre, Descripcion)
+TituloProfesor = (Cod_Titulo, DNI, Fecha)
+Curso          = (Cod_Curso, Nombre, Descripcion, Fecha_Creacion, Duracion)
+AlumnoCurso    = (DNI, Cod_Curso, Año, Desempeño, Calificacion)
+ProfesorCurso  = (DNI, Cod_Curso, Fecha_Desde, Fecha_Hasta)
 ```
 
 1. Listar el DNI, Apellido, Nombre, Genero y Fecha de nacimiento de los alumnos
@@ -87,7 +87,7 @@ Apellido y Nombre.
 
 4. Listar el DNI, Apellido, Nombre y Calificacion de aquellos alumnos que
 obtuvieron una calificacion superior a 5 en los cursos que dicta el profesor
-"Rodriguez". Dicho listado deberá estar ordenado por Apellido.
+“Rodriguez”. Dicho listado deberá estar ordenado por Apellido.
 
 5. Listar el Nombre, Descripcion, Fecha de creacion del curso que posea más
 horas de duracion y del que menos horas posea.
@@ -110,10 +110,10 @@ Ejercicio 3
 Dadas las siguientes relaciones, resolver en SQL las consultas planteadas:
 
 ```
-CLIENTE  = (Nro_Cliente, DNI, Apellido, Nombre, Renta_Anual, Tipo_Cliente)
-EMBARQUE = (Nro_Embarque, Nro_Cliente, Peso, Nro_Camion, Nro_Ciudad, Fecha)
-CAMION   = (Nro_Camion, Marca, Modelo, Año)
-CIUDAD   = (Nro_Ciudad, Nombre, Poblacion)
+Cliente  = (Nro_Cliente, DNI, Apellido, Nombre, Renta_Anual, Tipo_Cliente)
+Embarque = (Nro_Embarque, Nro_Cliente, Peso, Nro_Camion, Nro_Ciudad, Fecha)
+Camion   = (Nro_Camion, Marca, Modelo, Año)
+Ciudad   = (Nro_Ciudad, Nombre, Poblacion)
 ```
 
 1. Listar la Marca, Modelo y Año de los camiones que han llevado paquetes
@@ -179,13 +179,13 @@ Actuacion     = (IdPelicula, IdAD)
 Funcion       = (IdCine, NumeroSala, IdPelicula, Fecha, Horario)
 ```
 
-1. Listar el Nombre y Ubicacion de todos los cines de la zona "La Plata" que
-tengan funcion para la pelicula "Spiderman 3". Dicho listado deberá estar
+1. Listar el Nombre y Ubicacion de todos los cines de la zona “La Plata” que
+tengan funcion para la pelicula “Spiderman 3”. Dicho listado deberá estar
 ordenado por Nombre.
 
 2. Listar el Titulo, Calificacion y Sinopsis de todas las peliculas dirigidas
-por "Oliver Stone" y que tenga al menos un actor cuyo nombre contenga la cadena
-"ab". Dicho listado deberá estar ordenado por Titulo.
+por “Oliver Stone” y que tenga al menos un actor cuyo nombre contenga la cadena
+“ab”. Dicho listado deberá estar ordenado por Titulo.
 
 3. Listar los Titulos de las peliculas que tengan funcion en todas las zonas.
 
@@ -208,21 +208,21 @@ Dadas las siguientes relaciones, resolver utilizando SQL las consultas planteada
 ```
 Material     = (cod_material, tipo, genero, titulo, descripcion, duracion, cantidad_capitulos)
 Capitulo     = (cod_material, nro_capitulo, descripcion)
-Canal        = (cod_canal, nombre, número, categoria)
+Canal        = (cod_canal, nombre, numero, categoria)
 Programacion = (cod_canal, cod_material, fecha, hora, nro_capitulo(opcional))
 ```
 
 1. Listar el titulo, genero y descripcion del material que se emitirá hoy con
 horario de comienzo entre las 16:00 hs. y las 20:00 hs. en canales de categoria
 "cine y series", el listado además debe incluir la hora precisa de comienzo, el
-numero de canal y la descripcion del capitulo, en caso de que figure su número.
+numero de canal y la descripcion del capitulo, en caso de que figure su numero.
 
 2. Listar el titulo, genero y descripcion del material que se emitirá hoy de
 tipo "serie" y que incluya el termino "drama" en genero, el listado además debe
-incluir la hora precisa de comienzo, el número de canal y la descripcion del
-capitulo, en caso de que figure su número.
+incluir la hora precisa de comienzo, el numero de canal y la descripcion del
+capitulo, en caso de que figure su numero.
 
-3. Listar nombre y número de aquellos canales que poseen programacion para
+3. Listar nombre y numero de aquellos canales que poseen programacion para
 todos los materiales.
 
 (Resolver si o si utilizando la cláusula Not Exists).
@@ -234,7 +234,7 @@ posean programacion para todos sus capitulos.
 distintos en los que tiene programacion.
 
 6. Asignar 0 al campo cantidad de capitulos y "null" al campo tipo a aquellos
-materiales que posean programacion en un único canal.
+materiales que posean programacion en un unico canal.
 
 Ejercicio 6
 -----------
@@ -252,20 +252,20 @@ Programacion = (IdCanal, IdDibujo, Fecha, Horario)
 ```
 
 1. Listar la denominacion, direccion y telefono de aquellos canales que
-pertenezcan a la provincia de "San Luis" y que tengan programacion para el
-dibujo "Thundercats". Dicho listado deberá estar ordenado por denominacion.
+pertenezcan a la provincia de “San Luis” y que tengan programacion para el
+dibujo “Thundercats”. Dicho listado deberá estar ordenado por denominacion.
 
 2. Listar el nombre y año de creacion de todos los dibujos que posean año de
 creacion entre los años 1900 y 2000 o que tengan al menos un personaje cuyo
-nombre finalice con la cadena "abe". Dicho listado deberá estar ordenado por
+nombre finalice con la cadena “abe”. Dicho listado deberá estar ordenado por
 nombre.
 
 3. Listar el identificador y el Nombre de los dibujos que tengan programacion
 en todos los canales.
 
 4. Listar el Nombre y Descripcion de aquellos dibujos que tengan programacion
-en la provincia de "San Luis" y no posean programacion en la provincia de "San
-Juan".
+en la provincia de “San Luis” y no posean programacion en la provincia de “San
+Juan”.
 
 5. Listar la Denominacion, Direccion y Telefono de aquellos canales que tengan
 programacion para más de 10 dibujos.
@@ -285,11 +285,11 @@ Escribe  = (IdArticulo, Dni)
 ```
 
 1. Listar el nombre y apellido de aquel os autores que presentaron articulos en
-el congreso "WICC 2009" pero que no hayan presentado en el congreso "TE&ET
-2009".
+el congreso “WICC 2009” pero que no hayan presentado en el congreso “TE&ET
+2009”.
 
 2. Anular el id de congreso (IdCongreso) de aquellos articulos presentados en
-el congreso "CACIC 2008" que tengan codigo de área nula (articulos rechazados).
+el congreso “CACIC 2008” que tengan codigo de área nula (articulos rechazados).
 
 3. Listar el nombre, fecha de inicio y fecha de fin de aquellos congresos en
 los que se hayan presentado más de 100 articulos.
@@ -298,7 +298,7 @@ los que se hayan presentado más de 100 articulos.
 Dicho listado deberá estar ordenado nombre de congreso, nombre de área y
 cantidad.
 
-5. Listar el titulo de todos los articulos enviados al congreso "CACIC 2010" y
+5. Listar el titulo de todos los articulos enviados al congreso “CACIC 2010” y
 el nombre del área a la que pertenece. Tener en cuenta que algunos autores no
 definen el área del congreso, pero es importante mostrar el articulo en el
 listado.
@@ -319,18 +319,18 @@ Abono      = (nroClte, año, mes, codActiv)
 Asistencia = (codActiv, fecha, nroClte)
 ```
 
-1. Reportar el número de cliente y la cantidad de veces por semana que puede
-asistir" Luque, Joaquin" en diciembre de 2009 junto con la cantidad de veces
+1. Reportar el numero de cliente y la cantidad de veces por semana que puede
+asistir” Luque, Joaquin” en diciembre de 2009 junto con la cantidad de veces
 que asistio entre los dias 14 y 17.
 
 2. Reportar la fecha de pago del cliente 1749 para el abono a Stretching de
 diciembre de 2009.
 
 3. Registrar la asistencia del cliente Luque, Joaquin a la actividad Stretching
-el "17/12/09".
+el “17/12/09”.
 
 4. Reportar apel ido y nombre de los clientes que asistieron por primera vez a
-"Aerobica" entre el 1 y el 30 de noviembre de 2009.
+“Aerobica” entre el 1 y el 30 de noviembre de 2009.
 
 5. Reportar el apellido y nombre de los clientes que no asistieron a alguna
 actividad, entre el 14 y el 19, para la que pagaron abono en el mes de
@@ -363,12 +363,12 @@ ordenado por nombre de manera descendente.
 que dicho repuesto no haya estado en reparaciones durante el mes de octubre.
 
 4. Proyectar precio, fecha y precio total de aquellas reparaciones donde se
-utilizo algún repuesto con precio en el momento de la reparacion mayor a $100 y
+utilizo algun repuesto con precio en el momento de la reparacion mayor a $100 y
 menor a $500.
 
 5. Listar para cada tecnico la cantidad de reparaciones que realizo. Se debe
 proyectar el nombre y especialidad del tecnico, junto a la cantidad solicitada.
 
-6. Listar el número de reparacion y precio total de aquellas reparaciones que
+6. Listar el numero de reparacion y precio total de aquellas reparaciones que
 necesitaron más de 5 repuestos.
 
