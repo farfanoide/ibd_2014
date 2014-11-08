@@ -19,16 +19,12 @@ if ARGV.size < 2
   puts <<-EOS
 Usage: parser.rb <db_name> <db_string>
 Example:
-  parser.rb test_db ' Provincia    = (IdProvincia, Nombre)
-                      Ciudad       = (IdCiudad, Nombre, IdProvincia)
-                      Canal        = (IdCanal, Denominacion, Direccion, Telefono, IdCiudad)
-                      Dibujo       = (IdDibujo, Nombre, Descripcion, Año_Creacion)
-                      Personaje    = (IdPersonaje, Nombre, Descripcion, IdDibujo)
-                      Programacion = (IdCanal, IdDibujo, Fecha, Horario)
-                    '
+  parser.rb test_db 'Provincia    = (IdProvincia, Nombre)
+                     Ciudad       = (IdCiudad, Nombre, IdProvincia)'
   EOS
   exit
 end
+
 db_name = ARGV.shift
 parse_me = ARGV.shift
 
@@ -51,9 +47,7 @@ module GenericModelParser
 
   def self.parse_model(line)
     model_name, properties = sanitize_line(line)
-    model_name.capitalize!
-    properties = properties.split(',')
-    [model_name, properties]
+    [model_name, properties.split(',')]
   end
 end
 
@@ -76,7 +70,7 @@ class #{model_name}
   #{props}
 end
 
-  "
+"
 end
 template_header = <<-EOS
 #!/usr/bin/env ruby
@@ -87,6 +81,7 @@ require 'data_mapper'
 require 'dm-mysql-adapter'
 require 'faker'
 
+`mysql -uroot -p -e 'CREATE DATABASE IF NOT EXISTS #{db_name};'`
 DataMapper::Logger.new($stdout, :debug)
 DataMapper.setup(:default, 'mysql://root:root@localhost/#{db_name}')
 EOS
