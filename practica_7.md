@@ -12,7 +12,7 @@ Socio          = (Cod_Socio, DNI, Apellido, Nombre, Fecha_Nacimiento, Fecha_Ingr
 Libro          = (ISBN, Titulo, Cod_Genero, Descripcion)
 Copia          = (ISBN, Nro_Ejemplar, Estado)
 Editorial      = (Cod_Editorial, Denominacion, Telefono, Calle, Numero, Piso, Dpto.)
-LibroEditorial = (ISBN, Cod_Editorial, Año_Edicion)
+LibroEditorial = (ISBN, Cod_Editorial, Anio_Edicion)
 Genero         = (Cod_Genero, Nombre)
 Prestamo       = (Nro_Prestamo, Cod_Socio, ISBN, Nro_Ejemplar, Fecha_Prestamo, Fecha_Devolucion)
 ```
@@ -61,7 +61,7 @@ Dadas las siguientes relaciones, resolver en SQL las consultas planteadas:
 
 ```
 Persona        = (DNI, Apellido, Nombre, Fecha_Nacimiento, Estado_Civil, Genero)
-Alumno         = (DNI, Legajo, Año_Ingreso)
+Alumno         = (DNI, Legajo, Anio_Ingreso)
 Profesor       = (DNI, Matricula, Nro_Expediente)
 Titulo         = (Cod_Titulo, Nombre, Descripcion)
 TituloProfesor = (Cod_Titulo, DNI, Fecha)
@@ -172,7 +172,7 @@ Dadas las siguientes relaciones, resolver en SQL las consultas planteadas:
 Zona          = (IdZona, NombreZona)
 Cine          = (IdCine, NombreCine, IdZona, Ubicacion)
 Sala          = (IdCine, NumeroSala, Capacidad)
-Pelicula      = (IdPelicula, Titulo, Año, Genero, Duracion, Calificacion, Sinopsis)
+Pelicula      = (IdPelicula, Titulo, Anio, Genero, Duracion, Calificacion, Sinopsis)
 ActorDirector = (IdAD, NombreAD)
 Direccion     = (IdPelicula, IdAD)
 Actuacion     = (IdPelicula, IdAD)
@@ -246,7 +246,7 @@ planteadas:
 Provincia    = (IdProvincia, Nombre)
 Ciudad       = (IdCiudad, Nombre, IdProvincia)
 Canal        = (IdCanal, Denominacion, Direccion, Telefono, IdCiudad)
-Dibujo       = (IdDibujo, Nombre, Descripcion, Año_Creacion)
+Dibujo       = (IdDibujo, Nombre, Descripcion, Anio_Creacion)
 Personaje    = (IdPersonaje, Nombre, Descripcion, IdDibujo)
 Programacion = (IdCanal, IdDibujo, Fecha, Horario)
 ```
@@ -313,7 +313,7 @@ Dadas las siguientes relaciones, resolver utilizando SQL las consultas planteada
 
 ```
 Cliente    = (nroClte, apellido, nombres, domicilio, telefono)
-Pago       = (nroClte, año, mes, veces_por_semana, fechaPago, importePagado)
+Pago       = (nroClte, anio, mes, veces_por_semana, fechaPago, importePagado)
 Actividad  = (codActiv, nombre)
 Abono      = (nroClte, año, mes, codActiv)
 Asistencia = (codActiv, fecha, nroClte)
