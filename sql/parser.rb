@@ -84,6 +84,10 @@ require 'faker'
 `mysql -uroot -p -e 'CREATE DATABASE IF NOT EXISTS #{db_name};'`
 DataMapper::Logger.new($stdout, :debug)
 DataMapper.setup(:default, 'mysql://root:root@localhost/#{db_name}')
+DataMapper.repository.adapter.tap do |adapter|
+  adapter.resource_naming_convention = lambda {|model_name| model_name}
+  adapter.field_naming_convention = lambda {|property| property.name}
+end
 EOS
 template_close = <<-EOS
 DataMapper.finalize
