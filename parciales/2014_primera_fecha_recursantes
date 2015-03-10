@@ -1,0 +1,4 @@
+Ciudad   = (codCiudad, nombre, habitantes)
+Empleado = (dni, nombre, apellido, fechaIngreso, salario, codCiudad)
+Edificio = (codEdificio, calle, numero, codCiudad)
+Limpieza = (codEdificio, dni, fecha)
