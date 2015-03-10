@@ -4,7 +4,7 @@
 # Description
 # -----------
 #
-#  Script to parse strings into executable ruby to create db tables.
+#  Script to parse strings into executable ruby to create db's
 #
 # ---------------------------------------------------------------------------------------
 # Author
@@ -42,7 +42,7 @@ module GenericModelParser
   end
 
   def self.sanitize_line(line)
-    remove_unwanted_words(line).scan(/(.*)=(.*)/).flatten.map { |group| group.gsub(/\ |\(|\)/, '') }
+    remove_unwanted_words(line).scan(/(.*)=(.*)/).flatten.map { |group| group.gsub(/\s+|\(|\)/, '') }
   end
 
   def self.parse_model(line)
@@ -80,8 +80,9 @@ require 'rubygems'
 require 'data_mapper'
 require 'dm-mysql-adapter'
 require 'faker'
+require './faker_helpers'
 
-`mysql -uroot -p -e 'CREATE DATABASE IF NOT EXISTS #{db_name};'`
+`mysql -uroot -proot -e 'CREATE DATABASE IF NOT EXISTS #{db_name};'`
 DataMapper::Logger.new($stdout, :debug)
 DataMapper.setup(:default, 'mysql://root:root@localhost/#{db_name}')
 DataMapper.repository.adapter.tap do |adapter|

@@ -109,11 +109,11 @@ end
 
 socios_amount.times do
   Socio.create(
-    dni: Faker::Number.number(8),
+    dni: chamullo_dni,
     apellido: Faker::Name.last_name,
     nombre: Faker::Name.first_name,
     fecha_nacimiento: Faker::Date.backward(20000),
-    fecha_ingreso: Faker::Date.backward(Random.rand(6000))
+    fecha_ingreso: Faker::Date.backward(6000)
   )
 end
 

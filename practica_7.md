@@ -22,7 +22,7 @@ entre el 01/9/2008 y el 30/09/2008. Dicho listado deberá estar ordenado por
 Apellido.
 
 2. Listar el Titulo, Genero (el Nombre del Genero) y Descripcion de aquellos
-libros editados por la editorial “Nueva Editorial”. Dicho listado deberá estar
+libros editados por la editorial "Nueva Editorial". Dicho listado deberá estar
 ordenado por Titulo.
 
 3. Listar el Apellido, Nombre, Fecha de Nacimiento y cantidad de prestamos de
@@ -30,11 +30,11 @@ aquellos socios que tengan más de 10 prestamos. Dicho listado deberá estar
 ordenado por Apellido.
 
 4. Listar el DNI, Apellido y Nombre de aquellos socios que tengan prestamos sin
-devolver de libros editados por la editorial “Gran Editorial”. Dicho listado
+devolver de libros editados por la editorial "Gran Editorial". Dicho listado
 deberá estar ordenado por Apel ido y Nombre.
 
 5. Proyectar que cantidad de socios tienen actualmente libros prestados cuyo
-estado sea “Bueno”.
+estado sea "Bueno".
 
 6. Listar el Titulo, Genero, Denominacion de la editorial y Año de edicion de
 aquellos libros editados entre los años 1980 y 2000. Dicho listado deberá estar
@@ -43,8 +43,8 @@ ordenado por año de edicion y titulo del libro.
 7. Agregar un nuevo socio con el DNI, Apellido, Nombre y Fecha de nacimiento
 que prefiera.
 
-8. Modificar el titulo del libro cuyo ISBN es 2222-2020 por el titulo “El
-Codigo”.
+8. Modificar el titulo del libro cuyo ISBN es 2222-2020 por el titulo "El
+Codigo".
 
 9. Listar el DNI, Apellido y Nombre de aquellos socios cuyo Apellido contenga
 la secuencia de letras "bra" o posea prestamos actuales de libros cuyo genero
@@ -66,7 +66,7 @@ Profesor       = (DNI, Matricula, Nro_Expediente)
 Titulo         = (Cod_Titulo, Nombre, Descripcion)
 TituloProfesor = (Cod_Titulo, DNI, Fecha)
 Curso          = (Cod_Curso, Nombre, Descripcion, Fecha_Creacion, Duracion)
-AlumnoCurso    = (DNI, Cod_Curso, Año, Desempeño, Calificacion)
+AlumnoCurso    = (DNI, Cod_Curso, Anio, Desempenio, Calificacion)
 ProfesorCurso  = (DNI, Cod_Curso, Fecha_Desde, Fecha_Hasta)
 ```
 
@@ -76,18 +76,75 @@ profesor. Además, el genero se debe proyectar de forma que se lea "femenino" o
 "masculino" y no "F" o "M". Dicho listado deberá estar ordenado por Apellido y
 Nombre.
 
+```sql
+select dni, apellido,nombre,genero, 'profesor' as rol,
+case genero
+'m' then 'masculino'
+'f' then 'femenino'
+'h' then 'hermafrodita'
+'t' then 'traba'
+end case
+from persona natural join profesor
+union (
+  select dni, apellido,nombre,genero, 'alumno' as rol <- esto funca!
+case genero
+'m' then 'masculino'
+'f' then 'femenino'
+'h' then 'hermafrodita'
+'t' then 'traba'
+end case
+)
+```
+
 2. Listar el DNI, Apellido, Nombre y Matricula de aquellos profesores que
 posean tres titulos o más. Dicho listado deberá estar ordenado por Apellido y
 Nombre.
+
+```sql
+select dni, apellido, nombre, matricula
+from persona natural join profesor natural join titulo_profesor
+group by dni, apellido, nombre, matricula
+having (count(Cod_Titulo) > 3)
+order by apellido, nombre
+```
 
 3. Listar el DNI, Apellido, Nombre, Cantidad de horas y Promedio de horas que
 dicta cada profesor. La cantidad de horas se calcula como la suma de la
 duracion de todos los cursos que dicta. Dicho listado deberá estar ordenado por
 Apellido y Nombre.
 
+```sql
+SELECT
+    DNI, apellido, nombre, SUM(duracion) cant_horas, AVG(cant_horas)
+FROM
+    persona NATURAL JOIN
+    profesor NATURAL JOIN
+    profesor_curso NATURAL JOIN
+    curso
+GROUP BY dni, apellido, nombre
+ORDER BY apellido, nombre
+```
+
 4. Listar el DNI, Apellido, Nombre y Calificacion de aquellos alumnos que
 obtuvieron una calificacion superior a 5 en los cursos que dicta el profesor
-“Rodriguez”. Dicho listado deberá estar ordenado por Apellido.
+"Rodriguez". Dicho listado deberá estar ordenado por Apellido.
+
+```sql
+SELECT
+    dni, apellido, nombre, calificacion
+FROM
+    persona NATURAL JOIN
+    alumno NATURAL JOIN
+    AlumnoCurso
+WHERE
+    calificacion > 5 AND Cod_Curso IN (
+        SELECT Cod_Curso
+        FROM
+            persona NATURAL JOIN
+            profesor NATURAL JOIN
+            profesor_curso
+        WHERE apellido = 'rodriguez')
+```
 
 5. Listar el Nombre, Descripcion, Fecha de creacion del curso que posea más
 horas de duracion y del que menos horas posea.
@@ -179,13 +236,13 @@ Actuacion     = (IdPelicula, IdAD)
 Funcion       = (IdCine, NumeroSala, IdPelicula, Fecha, Horario)
 ```
 
-1. Listar el Nombre y Ubicacion de todos los cines de la zona “La Plata” que
-tengan funcion para la pelicula “Spiderman 3”. Dicho listado deberá estar
+1. Listar el Nombre y Ubicacion de todos los cines de la zona "La Plata" que
+tengan funcion para la pelicula "Spiderman 3". Dicho listado deberá estar
 ordenado por Nombre.
 
 2. Listar el Titulo, Calificacion y Sinopsis de todas las peliculas dirigidas
-por “Oliver Stone” y que tenga al menos un actor cuyo nombre contenga la cadena
-“ab”. Dicho listado deberá estar ordenado por Titulo.
+por "Oliver Stone" y que tenga al menos un actor cuyo nombre contenga la cadena
+"ab". Dicho listado deberá estar ordenado por Titulo.
 
 3. Listar los Titulos de las peliculas que tengan funcion en todas las zonas.
 
@@ -252,20 +309,20 @@ Programacion = (IdCanal, IdDibujo, Fecha, Horario)
 ```
 
 1. Listar la denominacion, direccion y telefono de aquellos canales que
-pertenezcan a la provincia de “San Luis” y que tengan programacion para el
-dibujo “Thundercats”. Dicho listado deberá estar ordenado por denominacion.
+pertenezcan a la provincia de "San Luis" y que tengan programacion para el
+dibujo "Thundercats". Dicho listado deberá estar ordenado por denominacion.
 
 2. Listar el nombre y año de creacion de todos los dibujos que posean año de
 creacion entre los años 1900 y 2000 o que tengan al menos un personaje cuyo
-nombre finalice con la cadena “abe”. Dicho listado deberá estar ordenado por
+nombre finalice con la cadena "abe". Dicho listado deberá estar ordenado por
 nombre.
 
 3. Listar el identificador y el Nombre de los dibujos que tengan programacion
 en todos los canales.
 
 4. Listar el Nombre y Descripcion de aquellos dibujos que tengan programacion
-en la provincia de “San Luis” y no posean programacion en la provincia de “San
-Juan”.
+en la provincia de "San Luis" y no posean programacion en la provincia de "San
+Juan".
 
 5. Listar la Denominacion, Direccion y Telefono de aquellos canales que tengan
 programacion para más de 10 dibujos.
@@ -285,11 +342,11 @@ Escribe  = (IdArticulo, Dni)
 ```
 
 1. Listar el nombre y apellido de aquel os autores que presentaron articulos en
-el congreso “WICC 2009” pero que no hayan presentado en el congreso “TE&ET
-2009”.
+el congreso "WICC 2009" pero que no hayan presentado en el congreso "TE&ET
+2009".
 
 2. Anular el id de congreso (IdCongreso) de aquellos articulos presentados en
-el congreso “CACIC 2008” que tengan codigo de área nula (articulos rechazados).
+el congreso "CACIC 2008" que tengan codigo de área nula (articulos rechazados).
 
 3. Listar el nombre, fecha de inicio y fecha de fin de aquellos congresos en
 los que se hayan presentado más de 100 articulos.
@@ -298,7 +355,7 @@ los que se hayan presentado más de 100 articulos.
 Dicho listado deberá estar ordenado nombre de congreso, nombre de área y
 cantidad.
 
-5. Listar el titulo de todos los articulos enviados al congreso “CACIC 2010” y
+5. Listar el titulo de todos los articulos enviados al congreso "CACIC 2010" y
 el nombre del área a la que pertenece. Tener en cuenta que algunos autores no
 definen el área del congreso, pero es importante mostrar el articulo en el
 listado.
@@ -320,17 +377,17 @@ Asistencia = (codActiv, fecha, nroClte)
 ```
 
 1. Reportar el numero de cliente y la cantidad de veces por semana que puede
-asistir” Luque, Joaquin” en diciembre de 2009 junto con la cantidad de veces
+asistir" Luque, Joaquin" en diciembre de 2009 junto con la cantidad de veces
 que asistio entre los dias 14 y 17.
 
 2. Reportar la fecha de pago del cliente 1749 para el abono a Stretching de
 diciembre de 2009.
 
 3. Registrar la asistencia del cliente Luque, Joaquin a la actividad Stretching
-el “17/12/09”.
+el "17/12/09".
 
 4. Reportar apel ido y nombre de los clientes que asistieron por primera vez a
-“Aerobica” entre el 1 y el 30 de noviembre de 2009.
+"Aerobica" entre el 1 y el 30 de noviembre de 2009.
 
 5. Reportar el apellido y nombre de los clientes que no asistieron a alguna
 actividad, entre el 14 y el 19, para la que pagaron abono en el mes de

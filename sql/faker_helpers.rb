@@ -1,5 +1,4 @@
 require 'faker'
-require 'dm-core'
 
 def fake_title
   Faker::Lorem.words( Faker::Code.rand_in_range(3,13)).join(' ').capitalize.slice(0..49)
